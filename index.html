@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minusculas a Mayusculas</title>
+    <link rel="icon" href="https://i.ibb.co/G9T33Zy/favicon.png" type="image/x-icon" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            --text-color: #365afa;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            position: relative;
+        }
+
+        form {
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: rgb(248, 248, 248);
+            font-size: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 10px;
+            border: none;
+            background-color: var(--text-color);
+            color: #fff;
+            height: 40px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #5876fb;
+        }
+
+        .notification {
+            background-color: #ffeb3b;
+            color: #333;
+            padding: 10px 20px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            z-index: 1000;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+
+        img {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            opacity: 0.1;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.ibb.co/NYQXGrD/LOGO-OFICIAL-TRANSPARENTE.png" alt="logo Otoniel">
+    <form>
+        <label>Pega melis en minúscula</label>
+        <textarea name="minusculas" id="minusculas"></textarea>
+        <button type="submit" id="send">Convertir a mayúsculas</button>
+        <button type="button" id="clear">Borrar datos</button>
+        <textarea name="mayusculas" id="mayusculas" readonly></textarea>
+    </form>
+    
+    <div class="notification" id="notification">
+        Pega tus melis en minúsculas y conviértelas a MAYÚSCULAS.
+    </div>
+
+    <script>
+        const $mayusculas = document.getElementById('mayusculas');
+        const $send = document.getElementById('send');
+        const $clear = document.getElementById('clear');
+        const notification = document.getElementById('notification');
+
+        $send.addEventListener('click', (e) => {
+            e.preventDefault();
+            const $minuscula = document.getElementById('minusculas').value;
+            $mayusculas.value = $minuscula.toUpperCase();
+        });
+
+        $clear.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('minusculas').value = '';
+            $mayusculas.value = '';
+        });
+
+        // Mostrar la notificación por 6 segundos
+        setTimeout(() => {
+            notification.classList.add('hidden');
+        }, 6000);
+    </script>
+</body>
+</html>
